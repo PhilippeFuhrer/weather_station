@@ -5,7 +5,7 @@ exports.sendEvent = null;
 exports.registerEventHandlers = function (source) {
     source.addEventListener('MyEvent', handleMyEvent);
     // Register more event handlers here
-    source.addEventListener('motion-detected', handleMyHantelEvent);
+    source.addEventListener('reps', handleMyHantelEvent);
 }
 
 function handleMyHantelEvent(event) {
@@ -21,12 +21,12 @@ function handleMyHantelEvent(event) {
 
     try {        
         // you can add more properties to your data object
-        data.myMessage = "Hello World";
+        //data.myMessage = "Hello World";
 
         // TODO: do something meaningful with the data
 
         // Log the event in the database
-        logger.logOne("MyDB", "motion-detected", data);
+        logger.logOne("MyNewDB", "reps", data);
 
         // send data to all connected clients
         exports.sendEvent(data);
