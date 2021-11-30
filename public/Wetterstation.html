@@ -5,11 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wetterstation</title>
+    <link rel="stylesheet" href="CSS-Stylesheet.css">
 </head>
 
 <body>
     <div class="container">
-        <h1 class="mt-3">Wetterstation</h1>
+        <br>
+        <br>
+        <h1 class=>Wetterstation</h1>
+        <br>
+        <p>Dies ist der Prototyp für die Wetterstation im Rahmen des Modules IOT. Viel Spass!</p>
+        
+        <img class ="bildright" src=https://images.pexels.com/photos/167699/pexels-photo-167699.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260 alt="Wetterbild" style="width:400px;">
 
         <h2 class="mt-5">Aktuelles Wettergeschehen</h2>
         <br>
@@ -18,14 +25,27 @@
         <p><b>Feuchtigkeit:</b> <span id="feuchtigkeit"></span></p>
         <p><b>Luftdruck:</b> <span id="luftdruck"></span></p>
         <br>
-
+        <div id="tempAnzeige" style="max-width:100%; height:400px" style= "text-align:center" ></div>
         <h2>Wetter Statistiken</h2>
-        <div id="wetterdaten" style="max-width:100%; height:400px"></div>
-        
-        <div id="examplechart" style="max-width:100%; height:400px"></div>
-        
+        <div id="wetterdaten" style="max-width:100%; height:400px" style= "text-align:center" ></div>
         <br>
         <h2>Warnungen</h2>
+        <div class="container">
+            <div class="row align-items-start">
+              <div class="col">
+                <p><b></p>Kissen reinnehmen?</b></p>
+                <p><span id="KissenRein"></span></p>
+                <br>
+                <br>
+              </div>
+              <div class="col">
+                <p><b></p>Wetterveränderungen?</b></p>
+                <p><span id="WetterVeraenderung"></span></p>
+              </div>
+              <div class="col">
+                Free Space
+              </div>
+            </div>
     </div>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">

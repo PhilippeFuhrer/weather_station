@@ -1,5 +1,6 @@
 var rootUrl = window.location.origin; // get the root URL, e.g. https://example.herokuapp.com or http://localhost:3001
 var Temperatur, Luftfeuchtigkeit, Luftdruck;
+LufdruckArray = [];
 
 // initialise server-sent events
 function initSSE() {
@@ -30,7 +31,15 @@ function updateVariables(data) {
     if (data.eventName === "Luftdruck") {
         document.getElementById("luftdruck").innerHTML = data.eventData;
         Luftdruck = Number(data.eventData);
+        LuftdruckArray.push[Luftdruck];
     }
+    if (data.eventName === "KissenRein") {
+        document.getElementById("KissenRein").innerHTML = data.eventData;
+    }
+    if (data.eventName === "WetterVeraenderung") {
+        document.getElementById("WetterVeraenderung").innerHTML = data.eventData;
+    }
+
 }
 
 var chartData, chartOptions, chart;
@@ -45,6 +54,9 @@ function drawChart() {
         title: 'Verlauf der Temperatur',
         hAxis: { title: 'Time' },
         vAxis: { title: 'Temperatur' },
+        boxStyle: {
+            // Color of the box outline.
+            stroke: '#ADD8E6'},
         animation: {
             duration: 300, // Dauer der Animation in Millisekunden
             easing: 'out',
@@ -65,7 +77,6 @@ function drawChart() {
     chart.draw(chartData, chartOptions); // Chart zeichnen
 }
 
-// Eine neuen Wert ins Chart 1 hinzufügen
 function addData(Temperatur) {
     
     var date = new Date();
@@ -76,29 +87,29 @@ function addData(Temperatur) {
 
 function addData2(Temperatur){
 
-    TemperatureData = google.visualization.arrayToDataTable([['Temperatur', Temperatur]]);
-    chart.draw(TemperatureData, optionsTemperature);
-
+    TemperatureData.setValue(1,1,Temperatur);
+    TemperatureChart.draw(TemperatureData, optionsTemperature);
 }
 
-var TemperatureData, optionsTemperature;
+var TemperatureData, TemperatureChart, optionsTemperature;
 google.charts.load('current', {'packages':['gauge']});
 google.charts.setOnLoadCallback(drawTemperatureChart);
 
 function drawTemperatureChart() {
 
     TemperatureData = google.visualization.arrayToDataTable([
-      ['Label', 'Value'],
-      ['Temperatur', 0],
-    ]);
+        ['Label', 'Value'],
+        ['Temperatur', 0],
+      ]);
 
     optionsTemperature = {
-      width: 400, height: 120,
+      width: 450, height: 135,
       redFrom: 30, redTo: 60,
       yellowFrom:20, yellowTo: 30,
-      minorTicks: 5
+      minorTicks: 5,
+      max: 60, min: -20
     };
 
-    var chart = new google.visualization.Gauge(document.getElementById('examplechart'));
-    chart.draw(TemperatureData, optionsTemperature);
+    TemperatureChart = new google.visualization.Gauge(document.getElementById('tempAnzeige'));
+    TemperatureChart.draw(TemperatureData, optionsTemperature);
   }
