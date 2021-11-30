@@ -1,0 +1,35 @@
+body {
+    background-color: lightblue;
+    font-family: verdana;
+    font-size: 300%;
+  }
+  h1 {
+    color:black;
+    font-family: verdana;
+  }
+  h2 {
+    color: black;
+    font-family: verdana;
+  }
+  h3 {
+    color: black;
+    font-family: verdana;
+  }
+  h4 {
+    color: black;
+    font-family: verdana;
+  }
+  div{
+    background-color: lightblue;
+    
+  }
+  p {
+    color: black;
+    font-family: verdana;
+    
+  }
+  .bildright {
+    position: absolute;
+    left: 60%;
+    top: 80px;
+    }
