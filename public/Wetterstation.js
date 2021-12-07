@@ -32,6 +32,7 @@ function updateVariables(data) {
     if (data.eventName === "Luftdruck") {
         document.getElementById("luftdruck").innerHTML = Math.round(data.eventData*100)/100;
         Luftdruck = Number(data.eventData);
+        addData4(Luftdruck);
         LuftdruckArray.push[Luftdruck];
     }
     if (data.eventName === "KissenRein") {
@@ -101,6 +102,12 @@ function addData3(Luftfeuchtigkeit){
     FeuchtigkeitsChart.draw(FeuchtigkeitsData, optionsFeuchtigkeit);
 }
 
+function addData4(Luftdruck){
+
+    hpaData.setValue(0,1,Math.round(Luftdruck));
+    hpaChart.draw(hpaData, optionshpa);
+}
+
 var TemperatureData, TemperatureChart, optionsTemperature;
 google.charts.load('current', {'packages':['gauge']});
 google.charts.setOnLoadCallback(drawTemperatureChart);
@@ -147,4 +154,26 @@ function drawTemperatureChart() {
     FeuchtigkeitsChart.draw(FeuchtigkeitsData, optionsFeuchtigkeit);
   }
 
-  
+  var hpaData, hpaChart, optionshpa;
+  google.charts.load('current', {'packages':['gauge']});
+  google.charts.setOnLoadCallback(drawhpaChart);
+
+  function drawhpaChart() {
+
+    hpaData = google.visualization.arrayToDataTable([
+        ['Label', 'Value'],
+        ['hpa', 950],
+      ]);
+
+    optionshpa = {
+      width: 450, height: 135,
+      greenFrom: 30, greenTo: 100,
+      redFrom: 0, redTo: 30,
+      minorTicks: 5,
+      max: 1000, min: 900
+    };
+
+    hpaChart = new google.visualization.Gauge(document.getElementById('hpaAnzeige'));
+    hpaChart.draw(hpaData, optionshpa);
+  }
+
