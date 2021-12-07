@@ -27,6 +27,7 @@ function updateVariables(data) {
     if (data.eventName === "Luftfeuchtigkeit") {
         document.getElementById("feuchtigkeit").innerHTML = Math.round(data.eventData*100)/100;
         Luftfeuchtigkeit = Number(data.eventData);
+        addData3(Luftfeuchtigkeit);
     }
     if (data.eventName === "Luftdruck") {
         document.getElementById("luftdruck").innerHTML = Math.round(data.eventData*100)/100;
@@ -94,6 +95,12 @@ function addData2(Temperatur){
     TemperatureChart.draw(TemperatureData, optionsTemperature);
 }
 
+function addData3(Luftfeuchtigkeit){
+
+    FeuchtigkeitsData.setValue(0,1,Math.round(Luftfeuchtigkeit));
+    FeuchtigkeitsChart.draw(FeuchtigkeitsData, optionsFeuchtigkeit);
+}
+
 var TemperatureData, TemperatureChart, optionsTemperature;
 google.charts.load('current', {'packages':['gauge']});
 google.charts.setOnLoadCallback(drawTemperatureChart);
@@ -116,3 +123,28 @@ function drawTemperatureChart() {
     TemperatureChart = new google.visualization.Gauge(document.getElementById('tempAnzeige'));
     TemperatureChart.draw(TemperatureData, optionsTemperature);
   }
+
+  var FeuchtigkeitsData, FeuchtigkeitsChart, optionsFeuchtigkeit;
+  google.charts.load('current', {'packages':['gauge']});
+  google.charts.setOnLoadCallback(drawFeuchtigkeitsChart);
+
+  function drawFeuchtigkeitsChart() {
+
+    FeuchtigkeitsData = google.visualization.arrayToDataTable([
+        ['Label', 'Value'],
+        ['Feuchtigkeit', 0],
+      ]);
+
+    optionsFeuchtigkeit = {
+      width: 450, height: 135,
+      greenFrom: 30, greenTo: 100,
+      redFrom: 0, redTo: 30,
+      minorTicks: 5,
+      max: 100, min: 0
+    };
+
+    FeuchtigkeitsChart = new google.visualization.Gauge(document.getElementById('feuchtigkeitsAnzeige'));
+    FeuchtigkeitsChart.draw(FeuchtigkeitsData, optionsFeuchtigkeit);
+  }
+
+  
