@@ -21,9 +21,9 @@
         <h2 class="mt-5">Aktuelles Wettergeschehen</h2>
         <br>
 
-        <p><b>Temperatur:</b> <span id="temperatur"></span></p>
-        <p><b>Feuchtigkeit:</b> <span id="feuchtigkeit"></span></p>
-        <p><b>Luftdruck:</b> <span id="luftdruck"></span></p>
+        <p><b>Temperatur:</b> <span id="temperatur"></span>° Celsius</p>
+        <p><b>Feuchtigkeit:</b> <span id="feuchtigkeit"></span> %</p>
+        <p><b>Luftdruck:</b> <span id="luftdruck"></span> hPa</p>
         <br>
         <div id="tempAnzeige" style="max-width:100%; height:200px"style= "text-align:center" ></div>
         <h2>Wetter Statistiken</h2>
@@ -35,22 +35,56 @@
               <div class="col">
                 <p><b></p>Kissen reinnehmen?</b></p>
                 <p><span id="KissenRein"></span></p>
-                <br>
-                <br>
               </div>
               <div class="col">
                 <p><b></p>Wetterveränderungen?</b></p>
                 <p><span id="WetterVeraenderung"></span></p>
               </div>
               <div class="col">
-                Free Space
+                <br>
+                <b>Wetterwarnung?</b>
+                <br>
+                <br>
+                <p><span id="WetterWarnung"></span></p>
               </div>
             </div>
     </div>
+    <br>
+      <p>
+        <label>DB name: </label>
+        <br>
+        <input type="text" id="db" placeholder="MyWeatherDB">
+    </p>
+
+    <label for="DatenTypWetter"><b>Wähle den Datentyp:</b></label>
+    <br>
+    <select name="DatenTypWetter" id="collection">
+      <option value="Temperatur">Temperatur</option>
+      <option value="Luftfeuchtigkeit">Luftfeuchtigkeit</option>
+      <option value="Luftdruck">Luftdruck</option>
+    </select>
+    <br>
+    <br>
+
+
+    <p>
+        <label>Query: </label>
+        <br>
+        <input type="text" id="query" placeholder="timestamp=2021-10-26">
+    </p>
+
+    <p>
+        <button onclick="getResult()">Get Result</button>
+    </p>
+
+    <p id="result">-</p>
+
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script src="dbaccess.js"></script>
 
     <!-- Muss am ende kommen! -->
     <script src="Wetterstation.js"></script>

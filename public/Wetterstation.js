@@ -19,17 +19,17 @@ initSSE();
 function updateVariables(data) {
     
     if (data.eventName === "Temperatur") {
-        document.getElementById("temperatur").innerHTML = data.eventData;
+        document.getElementById("temperatur").innerHTML = Math.round(data.eventData*100)/100;
         Temperatur = Number(data.eventData);
         addData(Temperatur);
         addData2(Temperatur);
     }
     if (data.eventName === "Luftfeuchtigkeit") {
-        document.getElementById("feuchtigkeit").innerHTML = data.eventData;
+        document.getElementById("feuchtigkeit").innerHTML = Math.round(data.eventData*100)/100;
         Luftfeuchtigkeit = Number(data.eventData);
     }
     if (data.eventName === "Luftdruck") {
-        document.getElementById("luftdruck").innerHTML = data.eventData;
+        document.getElementById("luftdruck").innerHTML = Math.round(data.eventData*100)/100;
         Luftdruck = Number(data.eventData);
         LuftdruckArray.push[Luftdruck];
     }
@@ -38,6 +38,9 @@ function updateVariables(data) {
     }
     if (data.eventName === "WetterVeraenderung") {
         document.getElementById("WetterVeraenderung").innerHTML = data.eventData;
+    }
+    if (data.eventName === "WetterWarnung") {
+        document.getElementById("WetterWarnung").innerHTML = data.eventData;
     }
 
 }
@@ -87,7 +90,7 @@ function addData(Temperatur) {
 
 function addData2(Temperatur){
 
-    TemperatureData.setValue(1,1,Temperatur);
+    TemperatureData.setValue(0,1,Math.round(Temperatur));
     TemperatureChart.draw(TemperatureData, optionsTemperature);
 }
 
