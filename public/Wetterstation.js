@@ -167,8 +167,7 @@ function drawTemperatureChart() {
 
     optionshpa = {
       width: 450, height: 135,
-      greenFrom: 30, greenTo: 100,
-      redFrom: 0, redTo: 30,
+      greenFrom: 950, greenTo: 965,
       minorTicks: 5,
       max: 1000, min: 900
     };
