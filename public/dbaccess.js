@@ -7,8 +7,10 @@ async function getResult() {
     var query = document.getElementById("query").value;
 
 
-    // e.g. http://localhost:3001/MyDB/MotionDetected?timestamp=13:00
-    var url = rootUrl + "/api/" + dbName + "/" + collectionName +"?" + query; 
+    // e.g. http://localhost:3001/api/MyDB/MotionDetected?timestamp=13:00
+    var url = rootUrl + "/api/" + dbName + "/" + collectionName +"?" + query;
+
+    
 
     var response = await axios.get(url);
     
