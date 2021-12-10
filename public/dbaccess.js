@@ -10,10 +10,8 @@ async function getResult() {
     // e.g. http://localhost:3001/api/MyDB/MotionDetected?timestamp=13:00
     var url = rootUrl + "/api/" + dbName + "/" + collectionName +"?" + query;
 
-    
-
     var response = await axios.get(url);
-    
+        
     var result = response.data;
     
     //var StringResult = JSON.stringify(result);
