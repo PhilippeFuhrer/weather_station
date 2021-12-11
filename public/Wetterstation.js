@@ -1,6 +1,5 @@
 var rootUrl = window.location.origin; // get the root URL, e.g. https://example.herokuapp.com or http://localhost:3001
 var Temperatur, Luftfeuchtigkeit, Luftdruck;
-LufdruckArray = [];
 
 // initialise server-sent events
 function initSSE() {
@@ -33,7 +32,6 @@ function updateVariables(data) {
         document.getElementById("luftdruck").innerHTML = Math.round(data.eventData*100)/100;
         Luftdruck = Number(data.eventData);
         addData4(Luftdruck);
-        LuftdruckArray.push[Luftdruck];
     }
     if (data.eventName === "KissenRein") {
         document.getElementById("KissenRein").innerHTML = data.eventData;
