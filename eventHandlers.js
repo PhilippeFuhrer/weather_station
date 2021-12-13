@@ -10,6 +10,7 @@ exports.registerEventHandlers = function (source) {
     source.addEventListener('KissenRein', handleKissen);
     source.addEventListener('WetterVeraenderung', handleWetterveraenderung);
     source.addEventListener('WetterWarnung', handleWetterWarnung);
+    source.addEventListener('PflanzenGiessen', handlePflanzenGiessen);
 }
 
 function handleMyEvent(event) {
@@ -153,6 +154,28 @@ function handleWetterWarnung(event) {
     try {        
         // Log the event in the database
         logger.logOne("MyWeatherDB", "WetterWarnung", data);
+
+        // send data to all connected clients
+        exports.sendEvent(data);
+    } catch (error) {
+        console.log("Could not handle event: " + JSON.stringify(event) + "\n");
+        console.log(error)
+    }
+}
+function handlePflanzenGiessen(event) {
+    // read variables from the event
+    var data = {
+        eventName: event.type,
+        eventData: JSON.parse(event.data).data, // the value of the event
+        deviceId: JSON.parse(event.data).coreid,
+        timestamp: JSON.parse(event.data).published_at
+    };
+
+    //var datetime = new Date(data.timestamp); // convert the timestamp to a Date object
+
+    try {        
+        // Log the event in the database
+        logger.logOne("MyWeatherDB", "PflanzenGiessen", data);
 
         // send data to all connected clients
         exports.sendEvent(data);

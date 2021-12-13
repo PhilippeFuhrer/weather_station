@@ -42,7 +42,9 @@ function updateVariables(data) {
     if (data.eventName === "WetterWarnung") {
         document.getElementById("WetterWarnung").innerHTML = data.eventData;
     }
-
+    if (data.eventName === "PflanzenGiessen") {
+        document.getElementById("PflanzenGiessen").innerHTML = data.eventData;
+    }
 }
 
 var chartData, chartOptions, chart;
@@ -152,6 +154,7 @@ function drawTemperatureChart() {
     FeuchtigkeitsChart.draw(FeuchtigkeitsData, optionsFeuchtigkeit);
   }
 
+
   var hpaData, hpaChart, optionshpa;
   google.charts.load('current', {'packages':['gauge']});
   google.charts.setOnLoadCallback(drawhpaChart);
@@ -165,7 +168,7 @@ function drawTemperatureChart() {
 
     optionshpa = {
       width: 450, height: 135,
-      greenFrom: 950, greenTo: 965,
+      greenFrom: 950, greenTo: 1000,
       minorTicks: 5,
       max: 1000, min: 900
     };

@@ -11,12 +11,14 @@ async function getResult() {
     var url = rootUrl + "/api/" + dbName + "/" + collectionName +"?" + query;
 
     var response = await axios.get(url);
-        
+
     var result = response.data;
+
+    //const obj = JSON.parse(result);
     
     //var StringResult = JSON.stringify(result);
 
     // update the html element
-    //document.getElementById("result").innerHTML = JSON.stringify(result);
+    //document.getElementById("result").innerHTML = obj;
     document.getElementById("result").innerHTML = JSON.stringify(result);
 }
